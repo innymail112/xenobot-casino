@@ -2354,81 +2354,19 @@ end
 					end
 					if not AvailableSlotsPlat then
 						StopMessage = 'Stopping script due to few available slots for platinum coins'
-						ManualStop = true
+						ManualStop = false
 					elseif not AvailableSlotsCrystal then
 						StopMessage = 'Stopping script due to few available slots for crystal coins'
-						ManualStop = true
+						ManualStop = false
 					elseif not AvailableSlotsItem then
 						StopMessage = 'Stopping script due to few available slots for items. Please, add another "'.._Containers_Items..'" inside the last container'
 						ManualStop = true
 					end
-					if Count_Platinum_Extended() <= 100 then
+					if Count_Platinum_Extended() <= 1 then
 						StopMessage = 'Stopping script due to low platinum coins ('..(Count_Platinum_Extended()/1000)..'k)'
-						ManualStop = true
+						ManualStop = false
 					end
-					if _Extra_AlarmLowCash then
-						if not ManualStop then
-							local AvailableAmount = Count_Crystal_Extended() * 10000
-							if High_Low then
-								local RequiredAmount = (High_Low_Maximum * High_Low_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play High/Low ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Odd_Even then
-								local RequiredAmount = (Odd_Even_Maximum * Odd_Even_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Odd/Even ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Blackjack then
-								local RequiredAmount = (Blackjack_Maximum * Blackjack_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Blackjack ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif First_Second_Last then
-								local RequiredAmount = (First_Second_Last_Maximum * First_Second_Last_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play First/Second/Last ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Single_Numbers then
-								local RequiredAmount = (Single_Numbers_Maximum * Single_Numbers_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Single Numbers ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Highest_Lowest then
-								local RequiredAmount = (Highest_Lowest_Maximum * Highest_Lowest_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Highest/Lowest ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Sequence then
-								local RequiredAmount = (Sequence_Maximum * Sequence_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Sequence ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Pair_Of_Numbers then
-								local RequiredAmount = (Pair_Of_Numbers_Maximum * Pair_Of_Numbers_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Pair Of Numbers ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Sum_Of_Numbers then
-								local RequiredAmount = (Sum_Of_Numbers_Maximum * Sum_Of_Numbers_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Sum Of Numbers ('..(AvailableAmount/1000)..'k)'
-								end
-							elseif Beat_That then
-								local RequiredAmount = (Beat_That_Maximum * Beat_That_Payout / 100)
-								if AvailableAmount < RequiredAmount then
-									StopMessage = 'Stopping script due to low amount of cash to play Beat That ('..(AvailableAmount/1000)..'k)'
-								end
-							end
-							if StopMessage then
-								ManualStop = true
-								LowCash = true
-							end
-						end
-					end
-				end
-			end
-		end
+					
 		if not Processing_Data then			
 			Time_Now = os.date("*t")
 			if Server_Save <= ((Time_Now.hour * 3600) + (Time_Now.min * 60) + Time_Now.sec) then
